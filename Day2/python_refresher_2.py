@@ -86,8 +86,25 @@ class Shape:
         pass
 
 class Circle(Shape):
-    def __inti__(self, radius):
+    def __init__(self, radius):
         self.radius = radius
         
     def area(self):
-        rewu
+        return pi * (self.radius ** 2)
+    
+class Rectangle(Shape):
+    def __init__ (self, width, height):
+        self.height = height
+        self.width = width
+        
+    def area(self):
+        return self.width * self.height
+
+class Square(Rectangle):
+    def __init__(self, side_length):
+        super().__init__(side_length, side_length)
+
+# Usage
+shapes = [Circle(5), Rectangle(4,8), Square(3)]
+for shape in shapes:
+    print(f"Area: {shape.area():.2f}")
