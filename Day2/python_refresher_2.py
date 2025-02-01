@@ -108,3 +108,36 @@ class Square(Rectangle):
 shapes = [Circle(5), Rectangle(4,8), Square(3)]
 for shape in shapes:
     print(f"Area: {shape.area():.2f}")
+    
+""" Abstraction: Payment System """
+from abc import ABC, abstractmethod
+
+class PaymentProcessor(ABC):
+    @abstractmethod
+    def process_payment(self, amount):
+        pass
+    
+class CreditCardProcessor(PaymentProcessor):
+    def process_payment(self, amount):
+        return f"Processing Credit card payment of ${amount}"
+
+class PayPalProcessor(PaymentProcessor):
+    def process_payment(self, amount):
+        return f"Processitn PayPal payment of ${amount}"
+
+class PaymentError(Exception):
+    pass
+ 
+# Usage
+try:
+    def make_payment(processor, amount):
+        print(processor.process_payment(amount))
+
+except PaymentError:
+    print("Inpute valid amount and Processsor")
+    
+credit_card = CreditCardProcessor
+paypal = PaymentProcessor
+
+make_payment(credit_card, 100)
+make_payment(paypal, 200)
